@@ -27,7 +27,7 @@ def build_image(build_id):
 
     try:
         build.deploy_status = 'IN PROGRESS'
-        build.save()
+        build.save(async_task=False)
         instance_id, ami_id = builder.build()
 
 
@@ -40,7 +40,7 @@ def build_image(build_id):
         send_mail(fail_mail_subject, fail_mail_body, settings.DEFAULT_FROM_EMAIL, [mail_to])
 
         build.deploy_status = 'FAILED'
-        build.save()
+        build.save(async_task=False)
 
         raise
 

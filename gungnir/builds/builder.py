@@ -67,6 +67,7 @@ def builder_fab(func):
             return func(*args, **kwargs)
         except NetworkError:
             # AWS is lying and the instance probably isnt up yet...sleep a few seconds
+            print 'FAILED' + "\n\n\n\n\n"
             time.sleep(30)
             return func(*args, **kwargs)
 
@@ -100,8 +101,8 @@ class AwsGunicornUbuntu(object):
         profile = self.owner.get_profile()
         self.key_file = profile.ssh_key
 
-        access_key = profile.aws_akey or settings.ACCESS_KEY_ID
-        secret_key = profile.aws_skey or settings.SECRET_ACCESS_KEY
+        access_key = profile.aws_akey #or settings.ACCESS_KEY_ID
+        secret_key = profile.aws_skey #or settings.SECRET_ACCESS_KEY
 
         self.ec2 = boto.connect_ec2(access_key, secret_key)
 

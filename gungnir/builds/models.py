@@ -111,7 +111,7 @@ class Build(BaseModel):
         results = super(Build, self).save(*args, **kwargs)
 
         if async_task:
-            send_task('gungnir.builds.tasks.build_image', args=[self.config.pk])
+            send_task('gungnir.builds.tasks.build_image', args=[self.pk])
 
 
 
