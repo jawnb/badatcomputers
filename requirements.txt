@@ -8,7 +8,7 @@ boto==2.5.2
 celery==3.0.5
 django-celery==3.0.4
 django-extensions==0.9
-django-registration==0.8
+django-registration==3.1.2
 gunicorn==0.14.6
 kombu==2.3.2
 pycrypto==2.6
